@@ -2,7 +2,7 @@ export default class Player {
   constructor(position, width, height, color, velocity) {
     this.width = width;
     this.height = height;
-    this.position=position
+    this.position = position;
     this.color = color;
     this.speed = 4;
     this.velocity = velocity;
@@ -20,11 +20,11 @@ export default class Player {
   setVelocity(velocity) {
     this.velocity = velocity;
   }
-  getPlayerPosition(){
-    return this.position
+  getPlayer() {
+    return { ...this.position, height: this.height, width: this.width };
   }
-  moveUp() {
-    this.position.y -= 2 * this.speed;
+  moveUp(num=5) {
+    this.position.y -= num * this.speed;
   }
   moveDown() {
     this.position.y += 2 * this.speed;
