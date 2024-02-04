@@ -1,25 +1,41 @@
 import Player from "./player.js";
 export default class Game {
   constructor(canvas) {
+    this.gravity = 0.7;
     this.ctx = canvas.getContext("2d");
     this.canvas = canvas;
-    this.velocity = { x: 0, y: 10 };
-    const player1_properties = [{ x: 20, y: 20 }, 20, 20, "red", this.velocity];
+    const player1_properties = [
+      { x: 20, y: 20 },
+      50,
+      150,
+      "red",
+      { x: 0, y: 0 },
+    ];
     this.player1 = new Player(...player1_properties);
     const player2_properties = [
       { x: 120, y: 20 },
-      20,
-      20,
+      50,
+      150,
       "blue",
-      this.velocity,
+      { x: 0, y: 0 },
     ];
     this.player2 = new Player(...player2_properties);
     this.floor = { width: 0, height: 45 };
     this.#addEventListener();
   }
 
+  rectangleCollision(rectangle1, rectangle2) {
+    if (
+      rectangle1.position.x + rectangle1.width >= rectangle2.position.x &&
+      rectangle1.position.x  <=
+        rectangle2.position.x + rectangle2.width
+    ) {
+      console.log("go");
+    }
+  }
   #addEventListener() {
     window.addEventListener("keydown", (evt) => {
+      this.rectangleCollision(this.player1, this.player2);
       switch (evt.key) {
         case "ArrowUp":
           this.player1.moveUp(20);
@@ -34,7 +50,26 @@ export default class Game {
         case "ArrowRight":
           this.player1.moveRight();
           break;
+        default:
+          break;
+      }
+    });
+    window.addEventListener("keydown", (evt) => {
+      //player2
+      switch (evt.key) {
+        case "w":
+          this.player2.moveUp(20);
+          break;
+        case "z":
+          this.player2.moveDown();
+          break;
 
+        case "a":
+          this.player2.moveLeft();
+          break;
+        case "s":
+          this.player2.moveRight();
+          break;
         default:
           break;
       }
@@ -61,15 +96,6 @@ export default class Game {
     const player1 = this.player1.getPlayer();
     const player2 = this.player2.getPlayer();
 
-    if (player1.y + player1.height + this.floor.height >= this.canvas.height) {
-      this.player1.setVelocity({ x: 0, y: 0 });
-    } else {
-      this.player1.setVelocity({ x: 0, y: 10 });
-    }
-    if (player2.y + player1.height + this.floor.height >= this.canvas.height) {
-      this.player2.setVelocity({ x: 0, y: 0 });
-    } else {
-      this.player2.setVelocity({ x: 0, y: 10 });
-    }
+    
   }
 }

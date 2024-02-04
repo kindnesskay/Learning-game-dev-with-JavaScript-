@@ -16,15 +16,16 @@ export default class Player {
 
   update() {
     this.position.y += this.velocity.y;
+    this.position.x += this.velocity.x;
   }
   setVelocity(velocity) {
     this.velocity = velocity;
   }
   getPlayer() {
-    return { ...this.position, height: this.height, width: this.width };
+    return { ...this.position, height: this.height, width: this.width,velocity:this.velocity };
   }
   moveUp(num=5) {
-    this.position.y -= num * this.speed;
+    this.velocity.y-=num;
   }
   moveDown() {
     this.position.y += 2 * this.speed;
@@ -32,7 +33,7 @@ export default class Player {
   moveLeft() {
     this.position.x -= 2 * this.speed;
   }
-  moveRight() {
-    this.position.x += 2 * this.speed;
+  moveRight(num=5) {
+    this.velocity.x-=num
   }
 }
