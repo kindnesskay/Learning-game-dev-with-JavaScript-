@@ -19,3 +19,54 @@ canvas{
     background-color: black;
 
 }
+.top{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    gap: 5px;
+    padding: 5px;
+}
+.top .health{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    gap: 5px;
+}
+.top .health .health-container-1{
+ border-top-left-radius: 20px;   
+ border-bottom-left-radius: 20px;   
+}
+.top .health .health-container-2{
+    border-top-left-radius: 20px;   
+    border-bottom-left-radius: 20px;
+    transform:rotate(180deg);   
+}
+.top .health .health-container{
+    background-color: rgb(39, 39, 57);
+    width: 100%;
+    height: 80%;
+    overflow: hidden;
+
+}
+.top .health .health-container  .health-bar{
+    height: 100%;
+    background-color: green;
+}
+.top .health .timer{
+    width: 50px;
+    flex-shrink: 0;
+    height: 100%;
+    background: rgb(39, 39, 57);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+}
+.top .health .timer span{
+    color: white;
+    font-size: 25px
+}
